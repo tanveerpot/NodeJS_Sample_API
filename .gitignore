@@ -1,0 +1,13 @@
+# dependencies
+/node_modules
+
+# production
+/dist
+/deploy
+.env
+# misc
+.DS_Store
+.vscode
+yarn.lock
+yarn-error
+npm-debug.log*
