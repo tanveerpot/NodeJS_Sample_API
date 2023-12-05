@@ -1,17 +1,14 @@
-import { GenerateTokenResponse } from '../../middlewares/auth';
+import { GenerateTokenResponse } from "../../middlewares/auth";
 
-const SignIn = async ({
-  userId,
-  email
-}) => {
+const SignIn = async ({ userId, email }) => {
   const response = GenerateTokenResponse({
     userId,
-    email
+    email,
   });
-  return ({
+  return {
     token: response.token,
-    user: { userId, email }
-  });
+    user: { userId, email },
+  };
 };
 
 export default SignIn;

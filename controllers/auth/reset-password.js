@@ -1,4 +1,4 @@
-import User from '../../models/user';
+import User from "../../models/user";
 
 export const ResetPassword = async ({ email, password }) => {
   const user = await User.findOne({ email });
@@ -7,7 +7,7 @@ export const ResetPassword = async ({ email, password }) => {
 
   await user.save();
   return {
-    message: 'Password updated succesfully'
+    message: "Password updated succesfully",
   };
 };
 

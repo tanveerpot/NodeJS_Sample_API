@@ -1,16 +1,16 @@
-import AWS from 'aws-sdk';
+import AWS from "aws-sdk";
 
 const {
   AWS_CONFIG_ACCESS_KEY_ID,
   AWS_CONFIG_SECRET_KEY,
   AWS_CONFIG_REGION,
-  AWS_BUCKET_NAME
+  AWS_BUCKET_NAME,
 } = process.env;
 
 AWS.config.update({
   accessKeyId: AWS_CONFIG_ACCESS_KEY_ID,
   secretAccessKey: AWS_CONFIG_SECRET_KEY,
-  region: AWS_CONFIG_REGION
+  region: AWS_CONFIG_REGION,
 });
 
 const s3 = new AWS.S3();
@@ -26,7 +26,9 @@ const getBucketsList = async () => {
 
 const getListObjectsOfBucket = async () => {
   try {
-    const listS3Objects = await s3.listObjects({ Bucket: AWS_BUCKET_NAME }).promise();
+    const listS3Objects = await s3
+      .listObjects({ Bucket: AWS_BUCKET_NAME })
+      .promise();
     return listS3Objects;
   } catch (err) {
     return err;
@@ -44,7 +46,9 @@ const uploadToS3Bucket = async ({ uploadParams }) => {
 
 const getS3Object = async ({ Key }) => {
   try {
-    const s3Object = await s3.getObject({ Bucket: AWS_BUCKET_NAME, Key }).promise();
+    const s3Object = await s3
+      .getObject({ Bucket: AWS_BUCKET_NAME, Key })
+      .promise();
     return s3Object.Location;
   } catch (err) {
     return err.message;
@@ -65,5 +69,5 @@ export {
   getListObjectsOfBucket,
   uploadToS3Bucket,
   getS3Object,
-  deleteFileFromS3
+  deleteFileFromS3,
 };

@@ -1,9 +1,7 @@
-import stripe from '../../services/stripe';
+import stripe from "../../services/stripe";
 
 const CancelSubscription = ({ subscriptionId }) => {
-  stripe.subscriptions.del(
-    subscriptionId
-  );
+  stripe.subscriptions.del(subscriptionId);
 };
 
 export default CancelSubscription;

@@ -1,18 +1,16 @@
-import stripe from '../../services/stripe';
+import stripe from "../../services/stripe";
 
-const CreateSubscription = ({
-  priceId,
-  customerId,
-  coupon
-}) => {
+const CreateSubscription = ({ priceId, customerId, coupon }) => {
   const setObj = {
     customer: customerId,
-    items: [{
-      price: priceId
-    }],
+    items: [
+      {
+        price: priceId,
+      },
+    ],
     // trial_period_days: 7,
     trial_from_plan: true,
-    coupon
+    coupon,
   };
 
   // if (trialExpiredAt) {

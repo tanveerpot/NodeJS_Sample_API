@@ -1,5 +1,5 @@
-import { extend } from 'lodash';
-import stripe from '../../services/stripe';
+import { extend } from "lodash";
+import stripe from "../../services/stripe";
 
 const UpdateCustomer = (customerId, { token, coupon }) => {
   const customerOptions = {};
@@ -8,9 +8,8 @@ const UpdateCustomer = (customerId, { token, coupon }) => {
   if (coupon) extend(customerOptions, { coupon });
 
   return stripe.customers.update(customerId, {
-    ...customerOptions
+    ...customerOptions,
   });
 };
-
 
 export default UpdateCustomer;

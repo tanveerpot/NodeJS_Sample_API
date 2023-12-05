@@ -1,20 +1,20 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-import User from '../../models/user';
-import { GenerateTokenResponse } from '../../middlewares/auth';
+import User from "../../models/user";
+import { GenerateTokenResponse } from "../../middlewares/auth";
 
 const SignUp = async ({ name, email, password }) => {
   const user = new User({
     _id: mongoose.Types.ObjectId().toHexString(),
     name,
     email,
-    password
+    password,
   });
   const result = await user.save();
   const { token } = GenerateTokenResponse({ ...result }) || {};
   return {
     token,
-    user: result
+    user: result,
   };
 };
 

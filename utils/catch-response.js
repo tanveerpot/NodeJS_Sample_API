@@ -1,9 +1,6 @@
-const catchResponse = ({
-  res,
-  err
-}) => {
+const catchResponse = ({ res, err }) => {
   let statusCode = 500;
-  let error = 'Server Error';
+  let error = "Server Error";
 
   if (err.statusCode) ({ statusCode } = err);
 
@@ -12,7 +9,7 @@ const catchResponse = ({
 
   res.status(statusCode).json({
     success: false,
-    error
+    error,
   });
 };
 
