@@ -1,47 +1,47 @@
-name: Node API
+# name: Node API
 
-on:
-  push:
-    branches: ["master"]
-  pull_request:
-    branches: ["master"]
+# on:
+#   push:
+#     branches: ["master"]
+#   pull_request:
+#     branches: ["master"]
 
-jobs:
-  build:
-    strategy:
-      matrix:
-        node-version: [14.x]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Login to private registry
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: tanveeritdev26/node-sample-api
-          build-args: |
-            MONGO_URL=${{ secrets.MONGO_URL }} 
-            NODE_ENV=${{ secrets.NODE_ENV }} 
-            PORT=${{ secrets.PORT }}
-            JWT_SECRET=${{ secrets.JWT_SECRET }}
-            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-            DB_USER=${{ secrets.DB_USER }}
-  deploy:
-    needs: build
-    runs-on: [self-hosted]
-    steps:
-      - name: Pull image from docker hub
-        run: sudo docker pull tanveeritdev26/node-sample-api:latest
-      - name: Delete old container
-        run: sudo docker rm -f nodejs-sample-api
-      - name: Run docker container
-        run: sudo docker run -d -p 90:90 --name nodejs-sample-api tanveeritdev26/node-sample-api
+# jobs:
+#   build:
+#     strategy:
+#       matrix:
+#         node-version: [14.x]
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#       - name: Set up Docker Buildx
+#         uses: docker/setup-buildx-action@v1
+#       - name: Login to private registry
+#         uses: docker/login-action@v1
+#         with:
+#           username: ${{ secrets.DOCKER_USERNAME }}
+#           password: ${{ secrets.DOCKER_PASSWORD }}
+#       - name: Build and push
+#         uses: docker/build-push-action@v2
+#         with:
+#           context: .
+#           push: true
+#           tags: tanveeritdev26/node-sample-api
+#           build-args: |
+#             MONGO_URL=${{ secrets.MONGO_URL }}
+#             NODE_ENV=${{ secrets.NODE_ENV }}
+#             PORT=${{ secrets.PORT }}
+#             JWT_SECRET=${{ secrets.JWT_SECRET }}
+#             DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+#             DB_USER=${{ secrets.DB_USER }}
+#   deploy:
+#     needs: build
+#     runs-on: [self-hosted]
+#     steps:
+#       - name: Pull image from docker hub
+#         run: sudo docker pull tanveeritdev26/node-sample-api:latest
+#       - name: Delete old container
+#         run: sudo docker rm -f nodejs-sample-api
+#       - name: Run docker container
+#         run: sudo docker run -d -p 90:90 --name nodejs-sample-api tanveeritdev26/node-sample-api
