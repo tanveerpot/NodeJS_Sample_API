@@ -1,17 +1,17 @@
-import { Types } from 'mongoose';
+import { Types } from "mongoose";
 
-import Lead from '../../models/lead';
+import Lead from "../../models/lead";
 
-const AddLeadRecord = async ({ data }) => {
+const AddLeadsRecord = async ({ data }) => {
   const leadData = await Lead.create({
     _id: Types.ObjectId().toHexString(),
-    ...data
+    ...data,
   });
 
   return {
-    message: 'Leads Record Saved Successfully',
-    data: leadData
+    message: "Leads Record Saved Successfully",
+    data: leadData,
   };
 };
 
-export default AddLeadRecord;
+export default AddLeadsRecord;

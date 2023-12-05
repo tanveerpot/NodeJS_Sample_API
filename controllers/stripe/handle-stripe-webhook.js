@@ -4,13 +4,14 @@
 /* eslint-disable camelcase */
 
 const HandleStripeWebhook = async ({ data, type }) => {
-  if (type === 'payment_method.attached') {}
-  else if (type === 'invoice.payment_succeeded') {} 
-  else if (type === 'invoice.payment_failed') {} 
-  else if (type === 'customer.subscription.deleted') {}
+  if (type === "payment_method.attached") {
+  } else if (type === "invoice.payment_succeeded") {
+  } else if (type === "invoice.payment_failed") {
+  } else if (type === "customer.subscription.deleted") {
+  }
 
   return {
-    message: 'Success'
+    message: "Success",
   };
 };
 
